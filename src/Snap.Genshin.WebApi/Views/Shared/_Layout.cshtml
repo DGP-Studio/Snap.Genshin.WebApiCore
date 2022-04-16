@@ -22,8 +22,15 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">欢迎</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">后台管理</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark" href="#" id="manageList" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                后台管理
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="manageList">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="BasicConfig">基本配置</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="BasicConfig">基本配置</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="BasicConfig">基本配置</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="/Swagger">API文档(Swagger)</a>

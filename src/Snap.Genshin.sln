@@ -1,22 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32314.265
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snap.Genshin.WebApi", "Snap.Genshin.WebApi\Snap.Genshin.WebApi.csproj", "{669D680D-3FFF-4FDC-80EB-65817F1F9492}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Snap.Genshin.WebApi", "Snap.Genshin.WebApi\Snap.Genshin.WebApi.csproj", "{669D680D-3FFF-4FDC-80EB-65817F1F9492}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{669D680D-3FFF-4FDC-80EB-65817F1F9492}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{669D680D-3FFF-4FDC-80EB-65817F1F9492}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{669D680D-3FFF-4FDC-80EB-65817F1F9492}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{669D680D-3FFF-4FDC-80EB-65817F1F9492}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8ABFC953-57D8-4BBE-9947-2E108FACB029}
 	EndGlobalSection
 EndGlobal

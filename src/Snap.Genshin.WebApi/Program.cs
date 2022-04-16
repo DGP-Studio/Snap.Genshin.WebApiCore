@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Snap.Genshin.WebApi.Entities;
+using Snap.Genshin.WebApi.Services;
 using Snap.Genshin.WebApi.Utilities;
 using System.Reflection;
 using System.Security.Claims;
@@ -10,6 +13,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseInMemoryDatabase("ApplicationTest");
+});
 
 builder.Services.AddSession(options =>
 {
@@ -56,6 +64,8 @@ builder.Services.AddSwaggerGen(c =>
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     c.IncludeXmlComments(xmlPath);
 });
+
+builder.Services.AddScoped<KeyValueConfigService>();
 
 var app = builder.Build();
 

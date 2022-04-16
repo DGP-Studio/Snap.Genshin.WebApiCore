@@ -1,26 +1,47 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Snap.Genshin.WebApi.Models;
+using Snap.Genshin.WebApi.Services;
+using Snap.Genshin.WebApi.Utilities;
 using System.Security.Claims;
 
 namespace Snap.Genshin.WebApi.ViewControllers
 {
     public class AdminController : Controller
     {
-        public AdminController(IConfiguration configuration)
+        public AdminController(IConfiguration configuration, KeyValueConfigService keyValueConfig)
         {
             this.configuration = configuration;
+            this.keyValueConfig = keyValueConfig;
         }
 
         private readonly IConfiguration configuration;
+        private readonly KeyValueConfigService keyValueConfig;
 
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult BasicConfig()
         {
             var isLogin = HttpContext.Session.GetString("_IsLogin");
             if (isLogin == "true")
-                return View();
+            {
+                var model = new BasicConfigViewModel
+                {
+                    Manifesto = keyValueConfig.GetString(StoredConfigKeys.Manifesto),
+                };
+                return View(model);
+            }
+                
             else
                 return RedirectToAction("Login");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SaveBasicConfig(BasicConfigViewModel model)
+        {
+            keyValueConfig.SetString(StoredConfigKeys.Manifesto, model.Manifesto);
+            ViewBag.Message = "配置保存成功！";
+            return View("BasicConfig");
         }
 
         [HttpGet]
@@ -44,7 +65,7 @@ namespace Snap.Genshin.WebApi.ViewControllers
                     HttpContext.Session.SetString("_IsLogin", "true");
                     
                     this.SignIn(User, JwtBearerDefaults.AuthenticationScheme);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("BasicConfig");
                 }
             }
 
