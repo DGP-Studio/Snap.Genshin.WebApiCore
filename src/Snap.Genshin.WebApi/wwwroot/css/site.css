@@ -1,0 +1,39 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.font-w700 {
+    font-weight: 700!important;
+}
+
+.font-size-h1 {
+    font-size: 2.25rem;
+}
+
+.font-size-sm {
+    font-size: 0.75rem;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
