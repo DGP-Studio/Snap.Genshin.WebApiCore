@@ -8,6 +8,7 @@
     <div class="row">
       <div class="col-md-12 order-md-1 bg-light">
         <form asp-action="Login" class="px-lg-4 py-md-4 py-lg-4">
+          @Html.AntiForgeryToken()
           <div class="mb-2 text-center">
             <p class="font-size-h1 font-w700">
               <span class="text-dark">SnapGenshin后台管理</span>
@@ -30,28 +31,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-@*<div class="container px-4">
-    <div class="text-center">
-        <span class="display-6">SnapGenshin后台管理</span>
-    </div>
-    <div style="background-color: green" class="col gx-5 gy-5">
-        <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-          <label for="floatingInput">Email address</label>
-        </div>
-        <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-          <label for="floatingPassword">Password</label>
-        </div>
-    </div>
-</div>*@
-
-
-
-

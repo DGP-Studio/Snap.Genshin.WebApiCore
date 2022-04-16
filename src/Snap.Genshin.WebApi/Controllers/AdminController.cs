@@ -1,49 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Snap.Genshin.WebApi.Models;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Snap.Genshin.WebApi.Utilities;
 
 namespace Snap.Genshin.WebApi.Controllers
 {
-    public class AdminController : Controller
+    [Route("[controller]")]
+    [ApiController]
+    public class AdminController : ControllerBase
     {
-        public AdminController(IConfiguration configuration)
+        [HttpGet("[Action]")]
+        public IActionResult Status()
         {
-            this.configuration = configuration;
-        }
-
-        private readonly IConfiguration configuration;
-
-        public IActionResult Index()
-        {
-            var isLogin = HttpContext.Session.GetString("_IsLogin");
-            if (isLogin == "true")
-                return View();
-            else
-                return RedirectToAction("Login");
-        }
-
-        [HttpGet]
-        public IActionResult Login()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Login(LoginViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var adminConfig = configuration.GetSection("Admin");
-                var userName = adminConfig.GetValue<string>("Username");
-                var password = adminConfig.GetValue<string>("Password");
-
-                if (model.UserName == userName && model.Password == password)
-                {
-                    HttpContext.Session.SetString("_IsLogin", "true");
-                    return RedirectToAction("Index");
-                }
-            }
-
-            return View();
+            return this.Success("snap.genshin.api");
         }
     }
 }

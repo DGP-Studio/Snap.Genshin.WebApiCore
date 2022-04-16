@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Snap.Genshin.WebApi.Models;
 
-namespace Snap.Genshin.WebApi.Controllers;
+namespace Snap.Genshin.WebApi.ViewControllers;
 
 public class HomeController : Controller
 {
