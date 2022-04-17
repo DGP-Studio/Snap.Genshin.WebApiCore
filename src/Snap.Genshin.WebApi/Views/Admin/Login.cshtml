@@ -7,7 +7,7 @@
   <div style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0.5rem 2rem; background-color: transparent; border-radius: 0.25rem">
     <div class="row">
       <div class="col-md-12 order-md-1 bg-light">
-        <form asp-action="Login" class="px-lg-4 py-md-4 py-lg-4">
+        <form action=@($"/Admin/Login?action={ViewBag.Action}") method="post" class="px-lg-4 py-md-4 py-lg-4">
           @Html.AntiForgeryToken()
           <div class="mb-2 text-center">
             <p class="font-size-h1 font-w700">

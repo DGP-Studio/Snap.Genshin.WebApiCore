@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Snap.Genshin.WebApi.Models;
 using Snap.Genshin.WebApi.Services;
 using Snap.Genshin.WebApi.Utilities;
+using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 
 namespace Snap.Genshin.WebApi.ViewControllers
@@ -32,7 +33,21 @@ namespace Snap.Genshin.WebApi.ViewControllers
             }
                 
             else
-                return RedirectToAction("Login");
+                return LocalRedirect("/Admin/Login?action=BasicConfig");
+        }
+
+        [HttpGet]
+        public IActionResult MetadataConfig()
+        {
+            var isLogin = HttpContext.Session.GetString("_IsLogin");
+            if (isLogin == "true")
+            {
+                var model = new MetadataViewModel();
+                return View(model);
+            }
+
+            else
+                return LocalRedirect("/Admin/Login?action=MetadataConfig");
         }
 
         [HttpPost]
@@ -44,15 +59,29 @@ namespace Snap.Genshin.WebApi.ViewControllers
             return View("BasicConfig");
         }
 
-        [HttpGet]
-        public IActionResult Login()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SaveMetadataConfig([Required, FromForm]IFormFile file)
         {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Message = $"未选择文件！";
+                return View("MetadataConfig");
+            }
+            ViewBag.Message = $"{file.FileName}更新成功！";
+            return View("MetadataConfig");
+        }
+
+        [HttpGet]
+        public IActionResult Login([FromQuery] string action = "BasicConfig")
+        {
+            ViewBag.Action = action;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Login(LoginViewModel model)
+        public IActionResult Login(LoginViewModel model, [FromQuery] string action = "BasicConfig")
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +94,7 @@ namespace Snap.Genshin.WebApi.ViewControllers
                     HttpContext.Session.SetString("_IsLogin", "true");
                     
                     this.SignIn(User, JwtBearerDefaults.AuthenticationScheme);
-                    return RedirectToAction("BasicConfig");
+                    return RedirectToAction(action);
                 }
             }
 

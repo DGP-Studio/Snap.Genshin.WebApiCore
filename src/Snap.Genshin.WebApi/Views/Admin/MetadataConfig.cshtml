@@ -1,0 +1,37 @@
+﻿@model MetadataViewModel
+@{
+    ViewData["Title"] = "元数据配置";
+}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-10">
+        @if (!string.IsNullOrEmpty(ViewBag.Message))
+        {
+            <div class="alert alert-primary" role="alert">@(ViewBag.Message)</div>
+        }
+        <div class="mb-3">
+          <label for="manifesto" class="font-size-h2">元数据列表</label>
+        </div>
+        <div class="mb-3">
+          <label for="manifesto" class="font-size-h2">自动更新</label>
+        </div>
+        <form enctype="multipart/form-data" method="post" asp-action="SaveMetadataConfig">
+          <div class="mb-3">
+            <label for="manifesto" class="font-size-h2">手动更新</label>
+          </div>
+          <div class="alert alert-success" role="alert">
+            请注意文件名：文件名与已存在的文件相同时会更新已存在的文件；不存在相同文件名时则添加一个新的文件。
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="file" name="file"/>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">
+              <span>更新</span>
+            </button>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>

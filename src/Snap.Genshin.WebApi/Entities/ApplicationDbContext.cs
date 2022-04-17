@@ -12,5 +12,10 @@ namespace Snap.Genshin.WebApi.Entities
         /// 键值配置存储
         /// </summary>
         public DbSet<KeyValueConfig> KeyValueConfigs { get; set; } = null!;
+
+        /// <summary>
+        /// 元数据信息
+        /// </summary>
+        public DbSet<MetadataInfo> MetadataInfo { get; set; } = null!;
     }
 }
